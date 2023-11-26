@@ -28,8 +28,4 @@ jobs:
     - name: Run tests
       run: |
         cd src
-        for file in $(git diff --name-only ${{ github.sha }} ${{ github.sha^ }}); do
-          if [[ $file =~ \.py$ ]]; then
-            python -m pytest $file
-          fi
-        done
+        python -m pytest .
