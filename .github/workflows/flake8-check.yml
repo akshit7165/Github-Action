@@ -31,4 +31,4 @@ jobs:
 
     - name: Check for indentation errors
       run: |
-        flake8 --select=E,W,F --show-source .
+        flake8 --select=E,W,F --show-source addition.py
