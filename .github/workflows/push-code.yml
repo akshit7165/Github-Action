@@ -3,7 +3,7 @@ name: My First GitHub Actions
 on:
   push:
     paths:
-      - 'src/**/*.py'
+      - 'src/*.py'
 
 jobs:
   build:
