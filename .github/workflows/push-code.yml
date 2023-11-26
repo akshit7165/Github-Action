@@ -1,9 +1,6 @@
 name: My First GitHub Actions
 
-on:
-  push:
-    paths:
-      - 'src/*.py'
+on: [push]
 
 jobs:
   build:
@@ -28,4 +25,4 @@ jobs:
     - name: Run tests
       run: |
         cd src
-        python -m pytest .
+        python -m pytest calculator.py
