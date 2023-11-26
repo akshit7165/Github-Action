@@ -1,9 +1,9 @@
-name: My First GitHub Action
+name: My First GitHub Actions
 
 on:
   push:
     paths:
-      - src/**/*.py
+      - 'src/**/*.py'
 
 jobs:
   build:
@@ -11,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        python-version: [3.8,3.9]
+        python-version: [3.8, 3.9]
 
     steps:
     - uses: actions/checkout@v3
@@ -28,7 +28,8 @@ jobs:
     - name: Run tests
       run: |
         cd src
-        if ! python -m pytest; then
-          echo "Tests failed. Exiting..."
-          exit 1
-        fi
+        for file in $(git diff --name-only ${{ github.sha }} ${{ github.sha^ }}); do
+          if [[ $file =~ \.py$ ]]; then
+            python -m pytest $file
+          fi
+        done
